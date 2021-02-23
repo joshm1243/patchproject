@@ -21,6 +21,7 @@
   "dependencies": {
     "express": "^4.17.1",
     "odbc": "^2.3.6",
+    "randomstring": "^1.1.5",
     "socket.io": "^3.1.1",
     "tedious": "^11.0.4"
   }
