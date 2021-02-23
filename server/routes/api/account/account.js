@@ -1,47 +1,45 @@
 const express = require("express")
-const userAuth = require("../../../databases/patchstore/accounts")
+const account = require("./../../../modules/internal/patchstore/account")
+
 
 const router = express.Router()
 
 router.post("/auth/", (req, res) => {
 
-    let username = req.body.username
-    let password = req.body.password
-
-    userAuth
-        .then(conn => {
-            conn.query("SELECT COUNT(id) AS NUMBER FROM ACCOUNTS WHERE username = '" + username + "' AND password = '" + password +  "';")
-            .then(result => {
-
-                if (result[0].NUMBER == 1) {
-                    res.status(201).send({
-                        "err" : false,
-                        "success" : true,
-                        "ws_url" : "http://127.0.0.1/ws/7v16y5jubatvzk8ozf5f/",
-                        "api_token" : "8bn80qnvdj0"
-                    })
-                }
-                else {
-                    res.status(201).send({
-                        "err" : false,
-                        "success" : false
-                    })
-                }
-            })
-            .catch(err => {
-
+    account.authAccount(req.body.username,req.body.password)
+        .then(function(result) {
+            if (result.authenticated) {
                 res.status(201).send({
-                    "err" : true,
-                    "errcode" : "DB002"
+                    "err" : false,
+                    "authenticated" : true,
+                    "ws_url" : "/ws/7v16y5jubatvzk8ozf5f/",
+                    "api_token" : result.api_token,
+                    "timeout" : 300000
                 })
-            })
+            }
+            else {
+                res.status(201).send({
+                    "err" : false,
+                    "success" : false
+                })
+            }
         })
-        .catch(err => {
-            res.status(201).send({
-                "err" : true,
-                "errcode" : "DB001"
-            })
+        .catch(function(err) {
+            console.log(err)
         })
+})
+
+
+router.post("/", (req, res) => {
+
+    account.authToken(req.body.authToken)
+        .then(function(result){
+            res.status(201).send(result)
+        })
+        .catch(function(err){
+            console.log(err)
+        })
+
 })
 
 module.exports = router;
