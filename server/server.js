@@ -4,12 +4,12 @@ const bodyParser = require("body-parser")
 
 const app = express()
 
-const auth = require("./routes/api/auth")
+const account = require("./routes/api/account/account")
 
 app.use("/",express.static("static"))
 
 app.use(bodyParser.json())
-app.use("/api/auth", auth)
+app.use("/api/account", account)
 
 app.listen(5000, () => {
     console.log("Server Started")
