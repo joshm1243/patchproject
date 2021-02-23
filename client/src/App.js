@@ -7,6 +7,16 @@ export default {
   methods: {
     testFunction() {
       alert(`Username: ${this.username}\nPassword: ${this.password}`);
+    },
+    postAuth() {
+      fetch(`${location.origin}/api`, {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({'username': this.username})
+      }).then(response=>response.json())
+        .then(data => alert(data));
     }
   },
   render() {
@@ -20,7 +30,7 @@ export default {
             style="width: 35rem;"
           >
             <b-card-text class="mb-4 mb-md-5" style="font-size: 8rem; line-height: 0.55;">Patch</b-card-text>
-            <b-form onSubmit={this.testFunction}>
+            <b-form onSubmit={this.postAuth}>
               <b-form-group
                 class="mb-1 mb-md-4"
                 id="input-group-1"
@@ -52,7 +62,7 @@ export default {
                   required
                 />
               </b-form-group>
-              <b-button type="submit" size="lg" class="col-12 mt-2" variant="primary">Login</b-button>
+              <b-button onClick={this.postAuth} size="lg" class="col-12 mt-2" variant="primary">Login</b-button>
             </b-form>
           </b-card>
         </div>

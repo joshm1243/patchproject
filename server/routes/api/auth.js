@@ -2,7 +2,6 @@ const express = require("express")
 
 const router = express.Router()
 
-const dbAccountFunctions = require("./../../databases/patchstore/accounts")
 
 router.post("/", (req, res) => {
 
