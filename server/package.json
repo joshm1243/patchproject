@@ -4,6 +4,7 @@
   "description": "Serves API requests and hosts a database for the Patch solution.",
   "main": "server.js",
   "scripts": {
+    "dev" : "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
@@ -19,6 +20,7 @@
   },
   "homepage": "https://github.com/joshm1243/patchproject#readme",
   "dependencies": {
+    "bcrypt": "^5.0.0",
     "express": "^4.17.1",
     "odbc": "^2.3.6",
     "randomstring": "^1.1.5",

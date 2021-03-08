@@ -1,3 +1,22 @@
+const databaseServices = require("../database/modex")
+
+
+function CreateAccount(account) {
+ 
+}
+
+function UpdateAccount(account) {
+
+}
+
+function DeleteAccount(account) {
+
+}
+
+CreateAccount()
+
+
+
 const connectToPatchStore = require("./connection")
 const randomstring = require("randomstring")
 
@@ -60,11 +79,12 @@ const authToken = function(token) {
                     "authenticated" : true
                 })
             }
-            else {
-                resolve({
-                    "authenticated" : false
-                })
-            }
+        }
+
+        {
+            resolve({
+                "authenticated" : false
+            })
         }
 
     })

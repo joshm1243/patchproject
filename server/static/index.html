@@ -1,0 +1,17 @@
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    const socket = io()
+
+    socket.on("auth",function(event) {
+        socket.emit("channel", {"resource" : "test"})
+    })
+
+    socket.on("channel", function(event){
+        console.log(event)
+    })
+
+    socket.emit("channel", {"resource" : "test"})
+
+    socket.emit('auth', {"authToken" : "FswVdChUGB"})
+
+</script>
