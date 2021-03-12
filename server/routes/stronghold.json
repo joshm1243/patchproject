@@ -1,5 +1,5 @@
 {
     "database" : {
-        "connString" : "Driver={ODBC Driver 17 for SQL Server};Server=tcp:patchproject.database.windows.net,1433;Database=patchstore;Uid=patchmain;Pwd=L1ghtPachMain;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30"
+        
     }
 }
